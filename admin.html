@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - StyleHub AI</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .admin-section {
+            min-height: 100vh;
+            background: var(--light);
+            padding: 2rem 0;
+        }
+
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== LOGIN FORM ===== */
+        .login-form {
+            max-width: 400px;
+            margin: 4rem auto;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        .login-form h2 {
+            text-align: center;
+            color: var(--dark);
+            margin-bottom: 2rem;
+        }
+
+        .login-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .login-form label {
+            display: block;
+            color: var(--dark);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .login-form input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(102,126,234,0.2);
+        }
+
+        .login-form button {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .login-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102,126,234,0.4);
+        }
+
+        /* ===== ADMIN DASHBOARD ===== */
+        .admin-dashboard {
+            display: none;
+        }
+
+        .admin-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .admin-header h2 {
+            margin: 0;
+        }
+
+        .logout-btn {
+            background: rgba(255,255,255,0.3);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.5);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255,255,255,0.5);
+        }
+
+        /* ===== ADMIN TABS ===== */
+        .admin-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 0.8rem 1.5rem;
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-color: transparent;
+        }
+
+        .tab-btn:hover {
+            border-color: var(--primary);
+        }
+
+        /* ===== TAB CONTENT ===== */
+        .tab-content {
+            display: none;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .tab-content h3 {
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        /* ===== TIP FORM ===== */
+        .add-form {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        .add-form .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .add-form label {
+            display: block;
+            color: var(--dark);
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        .add-form input,
+        .add-form textarea {
+            width: 100%;
+            padding: 0.7rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-family: inherit;
+        }
+
+        .add-form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .add-form button {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .add-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102,126,234,0.3);
+        }
+
+        /* ===== TIPS LIST ===== */
+        .tips-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .tip-item {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 4px solid var(--primary);
+        }
+
+        .tip-item-info h4 {
+            color: var(--dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .tip-item-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .tip-item-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .tip-item-actions button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        .edit-btn {
+            background: #FFB84D;
+            color: white;
+        }
+
+        .delete-btn {
+            background: #FF6B6B;
+            color: white;
+        }
+
+        .edit-btn:hover,
+        .delete-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .admin-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .admin-tabs {
+                gap: 0.5rem;
+            }
+
+            .tab-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.85rem;
+            }
+
+            .tip-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-sparkles"></i> <span>StyleHub AI</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="admin.html" class="btn-admin">Admin</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Section -->
+    <section class="admin-section">
+        <div class="admin-container">
+            <!-- Login Form -->
+            <div id="login-container" class="login-form">
+                <h2>🔐 Admin Login</h2>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" id="username" placeholder="Masukkan username" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="password" placeholder="Masukkan password" required>
+                    </div>
+                    <button type="submit">Login</button>
+                </form>
+                <p style="text-align: center; margin-top: 1rem; color: #666;">
+                    Default: username: <strong>admin</strong> | password: <strong>admin123</strong>
+                </p>
+            </div>
+
+            <!-- Admin Dashboard -->
+            <div id="dashboard-container" class="admin-dashboard">
+                <div class="admin-header">
+                    <h2>📊 Admin Dashboard</h2>
+                    <button class="logout-btn" onclick="logout()">Logout</button>
+                </div>
+
+                <!-- Tabs -->
+                <div class="admin-tabs">
+                    <button class="tab-btn active" onclick="switchTab('tips')">Manage Tips</button>
+                    <button class="tab-btn" onclick="switchTab('settings')">Settings</button>
+                    <button class="tab-btn" onclick="switchTab('analytics')">Analytics</button>
+                </div>
+
+                <!-- Tab Content: Manage Tips -->
+                <div id="tips-tab" class="tab-content active">
+                    <h3>💡 Kelola Tips Outfit Harian</h3>
+
+                    <div class="add-form">
+                        <h4>➕ Tambah Tips Baru</h4>
+                        <div class="form-group">
+                            <label>Judul Tips</label>
+                            <input type="text" id="tip-title" placeholder="Contoh: Outfit Monokrom Timeless">
+                        </div>
+                        <div class="form-group">
+                            <label>Deskripsi</label>
+                            <textarea id="tip-desc" placeholder="Masukkan deskripsi tips outfit..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Icon/Emoji</label>
+                            <input type="text" id="tip-icon" placeholder="Contoh: 🖤">
+                        </div>
+                        <button onclick="addTip()">Simpan Tips</button>
+                    </div>
+
+                    <h4>📋 Daftar Tips</h4>
+                    <div id="tips-list-container" class="tips-list">
+                        <!-- Tips akan ditampilkan di sini -->
+                    </div>
+                </div>
+
+                <!-- Tab Content: Settings -->
+                <div id="settings-tab" class="tab-content">
+                    <h3>⚙️ Pengaturan Website</h3>
+                    <div class="ad

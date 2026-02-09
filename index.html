@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StyleHub AI - Tips Outfit & Fashion Modern</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-sparkles"></i> <span>StyleHub AI</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#tips">Tips Outfit</a></li>
+                <li><a href="ai-recommend.html" class="btn-ai">✨ AI Recommendation</a></li>
+                <li><a href="outfit-categories.html">Kategori</a></li>
+                <li><a href="ootd-gallery.html">OOTD Gallery</a></li>
+                <li><a href="admin.html" class="btn-admin">Admin</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section dengan Carousel -->
+    <section id="home" class="hero">
+        <div class="carousel-container">
+            <div class="carousel-slide fade" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                <div class="carousel-content">
+                    <h1>Temukan Outfit Sempurna Anda</h1>
+                    <p>Dapatkan rekomendasi outfit berdasarkan AI yang sesuai dengan gaya dan aktivitas Anda</p>
+                    <a href="ai-recommend.html" class="btn-primary">Mulai Sekarang</a>
+                </div>
+            </div>
+            <div class="carousel-slide fade" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                <div class="carousel-content">
+                    <h1>Inspirasi OOTD Terbaru</h1>
+                    <p>Lihat koleksi outfit dari fashion influencer dan designer terpilih</p>
+                    <a href="ootd-gallery.html" class="btn-primary">Lihat Gallery</a>
+                </div>
+            </div>
+            <div class="carousel-slide fade" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                <div class="carousel-content">
+                    <h1>Mix & Match Cerdas</h1>
+                    <p>Pelajari cara menggabungkan pakaian untuk berbagai gaya dan kesempatan</p>
+                    <a href="outfit-categories.html" class="btn-primary">Jelajahi</a>
+                </div>
+            </div>
+            <a class="carousel-prev" onclick="changeSlide(-1)">&#10094;</a>
+            <a class="carousel-next" onclick="changeSlide(1)">&#10095;</a>
+        </div>
+    </section>
+
+    <!-- Tips Outfit Harian -->
+    <section id="tips" class="tips-section">
+        <div class="container">
+            <h2 class="section-title">💡 Tips Outfit Harian</h2>
+            <div class="tips-grid" id="tips-grid">
+                <!-- Tips akan dimuat dari localStorage atau data default -->
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Quick Recommendation -->
+    <section class="ai-quick-section">
+        <div class="container">
+            <h2 class="section-title">🤖 Rekomendasi Cepat AI</h2>
+            <div class="quick-form">
+                <form id="quick-form">
+                    <div class="form-group">
+                        <label>Aktivitas Hari Ini</label>
+                        <select name="activity" required>
+                            <option>Pilih Aktivitas</option>
+                            <option value="sekolah">Sekolah</option>
+                            <option value="hangout">Hangout</option>
+                            <option value="pesta">Pesta</option>
+                            <option value="formal">Formal</option>
+                            <option value="olahraga">Olahraga</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Cuaca Hari Ini</label>
+                        <select name="weather" required>
+                            <option>Pilih Cuaca</option>
+                            <option value="cerah">Cerah & Panas</option>
+                            <option value="dingin">Dingin</option>
+                            <option value="hujan">Hujan</option>
+                            <option value="berawan">Berawan</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Warna Favorit</label>
+                        <input type="text" name="color" placeholder="Contoh: Hitam, Biru, Pink" required>
+                    </div>
+                    <button type="submit" class="btn-secondary">Dapatkan Rekomendasi</button>
+                </form>
+                <div id="quick-result"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kategori Outfit -->
+    <section class="category-section">
+        <div class="container">
+            <h2 class="section-title">👗 Kategori Outfit</h2>
+            <div class="category-grid">
+                <a href="outfit-categories.html?cat=formal" class="category-card">
+                    <div class="category-icon"><i class="fas fa-tuxedo"></i></div>
+                    <h3>Formal</h3>
+                    <p>Outfit untuk acara resmi</p>
+                </a>
+                <a href="outfit-categories.html?cat=casual" class="category-card">
+                    <div class="category-icon"><i class="fas fa-shirt"></i></div>
+                    <h3>Casual</h3>
+                    <p>Gaya santai & nyaman</p>
+                </a>
+                <a href="outfit-categories.html?cat=streetwear" class="category-card">
+                    <div class="category-icon"><i class="fas fa-shoe-prints"></i></div>
+                    <h3>Streetwear</h3>
+                    <p>Trend street style terkini</p>
+                </a>
+                <a href="outfit-categories.html?cat=seasonal" class="category-card">
+                    <div class="category-icon"><i class="fas fa-snowflake"></i></div>
+                    <h3>Seasonal</h3>
+                    <p>Outfit sesuai musim</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title">✨ Fitur Unggulan</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-brain"></i></div>
+                    <h3>AI Recommendation</h3>
+                    <p>Dapatkan rekomendasi outfit personal berdasarkan preferensi Anda</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-images"></i></div>
+                    <h3>OOTD Gallery</h3>
+                    <p>Inspirasi dari ratusan outfit kombinasi menarik</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-palette"></i></div>
+                    <h3>Mix & Match</h3>
+                    <p>Pelajari cara menggabungkan warna dan gaya dengan sempurna</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
+                    <h3>Mobile Friendly</h3>
+                    <p>Akses dari mana saja, kapan saja dengan smartphone Anda</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 StyleHub AI | Tips Outfit & Fashion Modern</p>
+            <div class="footer-links">
+                <a href="#">Tentang Kami</a>
+                <a href="#">Privacy</a>
+                <a href="#">Kontak</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/ai-engine.js"></script>
+</body>
+</html>
